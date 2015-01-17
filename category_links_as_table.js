@@ -6,8 +6,7 @@
 
    function loadJQuery(callback){
       if (typeof jQuery=='undefined') { 
-         importScript('http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', 
-            callback);
+         importScript('http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', callback);
       }
       else {
          callback();
