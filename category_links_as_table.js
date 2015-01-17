@@ -1,12 +1,30 @@
 (function(){
-   if (typeof jQuery=='undefined') { 
-      script = document.createElement( 'script' );
-      script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
-      script.onload=buildTable;
-      document.body.appendChild(script);
+
+   loadJQuery(function(){
+      loadYaml(buildTable);
+   });
+
+   function loadJQuery(callback){
+      if (typeof jQuery=='undefined') { 
+         importScript('http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', 
+            callback);
+      }
+      else {
+         callback();
+      }
+   
    }
-   else {
-      buildTable();
+
+   function loadYaml(callback)
+      importScript('https://raw.githubusercontent.com/connec/yaml-js/master/yaml.min.js', callback);
+   }
+
+   function importScript(url, callback){
+      var script       = document.createElement( 'script' );
+      script.src       = url;
+      script.onload    = callback;
+
+      document.body.appendChild(script);
    }
 
    function buildTable(){
@@ -14,7 +32,7 @@
       jQuery('ul[id^="ref_"] > li> a')
       .not('a[href*=publication_date], li.shoppingEngineExpand > a')
       .each(function(){
-         l = jQuery(this); 
+         var l = jQuery(this); 
          tbody += '<tr><td>' + l.text() + '</td><td>' + 'http://www.amazon.com' + l.attr('href') + '</td></tr>\n';
       });
 
