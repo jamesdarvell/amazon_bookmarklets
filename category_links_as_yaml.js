@@ -37,7 +37,7 @@
       .not('a[href*=publication_date], li.shoppingEngineExpand > a')
       .each(function(){
          var l = jQuery(this);
-         links.push({text:l.text().replace(/\(.*\)/g, '').trim(), url: 'http://www.amazon.com' + l.attr('href')}); 
+         links.push({category:l.text().replace(/\(.*\)/g, '').trim(), url: 'http://www.amazon.com' + l.attr('href')}); 
       });
       
      return links;
