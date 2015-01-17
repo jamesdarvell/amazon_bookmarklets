@@ -1,7 +1,7 @@
 (function(){
 
    loadJQuery(function(){
-      loadYaml(buildTable);
+      loadYaml(outputYaml);
    });
 
    function loadJQuery(callback){
@@ -25,19 +25,22 @@
 
       document.body.appendChild(script);
    }
+   
+   function outputYaml(){
+        jQuery('body').append('<pre>#YAML#</pre>'.replace('#YAML#', yaml.dump(getData())));  
+   }
 
-   function buildTable(){
-      var tbody = ''; 
-      jQuery('ul[id^="ref_"] > li> a')
+    function getData(){
+     links = []
+
+     jQuery('ul[id^="ref_"] > li> a')
       .not('a[href*=publication_date], li.shoppingEngineExpand > a')
       .each(function(){
-         var l = jQuery(this); 
-         tbody += '<tr><td>' + l.text() + '</td><td>' + 'http://www.amazon.com' + l.attr('href') + '</td></tr>\n';
+         var l = jQuery(this);
+         links.push({text:jQuery.trim(l.text()).replace(/_\(.*\)/g, ''), url: 'http://www.amazon.com' + l.attr('href')}); 
       });
-
-      var table = '<table>\n<thead><tr><th>Category</th><th>Url</th></tr></thead><tbody>' 
-         + tbody + '</tbody></table>';
-
-      jQuery('body').replaceWith(table);
-   }
+      
+     return links;
+    }
+   
 })();
