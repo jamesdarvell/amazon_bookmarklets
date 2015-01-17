@@ -1,7 +1,7 @@
 
 (function(){
 
-   var parentCategory = jQuery('.shoppingEngineExpand > a:nth-child(1) > span:nth-child(2)').text();
+   var parentCategory = jQuery('li:nth-child(2) > strong:nth-child(1)').text();
 
    loadJQuery(function(){
       loadYaml(outputYaml);
