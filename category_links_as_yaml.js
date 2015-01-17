@@ -41,7 +41,7 @@
       .each(function(){
          var l = jQuery(this);
          links.push({
-            text: parentCategory + ' - ' + l.text().replace(/\(.*\)/g, '').trim(), 
+            category: parentCategory + ' - ' + l.text().replace(/\(.*\)/g, '').trim(), 
             url: 'http://www.amazon.com' + l.attr('href')
          }); 
       });
