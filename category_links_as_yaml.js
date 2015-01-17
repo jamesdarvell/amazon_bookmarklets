@@ -1,4 +1,7 @@
+
 (function(){
+
+   var parentCategory = jQuery('.shoppingEngineExpand > a:nth-child(1) > span:nth-child(2)').text();
 
    loadJQuery(function(){
       loadYaml(outputYaml);
@@ -37,7 +40,10 @@
       .not('a[href*=publication_date], li.shoppingEngineExpand > a')
       .each(function(){
          var l = jQuery(this);
-         links.push({category:l.text().replace(/\(.*\)/g, '').trim(), url: 'http://www.amazon.com' + l.attr('href')}); 
+         links.push({
+            text: parentCategory + ' - ' + l.text().replace(/\(.*\)/g, '').trim(), 
+            url: 'http://www.amazon.com' + l.attr('href')
+         }); 
       });
       
      return links;
