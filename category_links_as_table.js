@@ -14,7 +14,7 @@
    
    }
 
-   function loadYaml(callback)
+   function loadYaml(callback){
       importScript('https://raw.githubusercontent.com/connec/yaml-js/master/yaml.min.js', callback);
    }
 
