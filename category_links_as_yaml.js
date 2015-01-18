@@ -30,7 +30,7 @@
    }
    
    function outputYaml(){
-        jQuery('body').append('<pre>#YAML#</pre>'.replace('#YAML#', yaml.dump(getData())));  
+        jQuery('body').prepend('<pre>#YAML#</pre>'.replace('#YAML#', yaml.dump(getData())));  
    }
 
     function getData(){
